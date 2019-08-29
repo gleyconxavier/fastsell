@@ -1,0 +1,13 @@
+{
+    "name": "app/fastsell",
+    "description": "A classifieds website",
+    "require":{
+        "php": ">= 7.0",
+        "twig/twig": "2.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
