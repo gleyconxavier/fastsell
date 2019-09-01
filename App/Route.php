@@ -4,25 +4,94 @@ namespace App;
 
 class Route {
 
+    private $routes;
+
     public function __construct() {
+
         $this->initRoutes();
+        $this->run($this->getUrl());
+
+    }
+
+    public function getRoutes() {
+
+        return $this->routes;
+
+    }
+
+    public function setRoutes($routes) {
+
+        $this->routes = $routes;
+
+    }
+
+    public function getUrl() {
+
+        return parse_url(($_SERVER['REQUEST_URI']), PHP_URL_PATH);
+
     }
 
     protected function initRoutes() {
 
         $routes['home'] = array (
-            'route' => '/index',
+            'route' => '/',
             'controller' => 'indexController',
             'action' => 'index'
         );
 
         $routes['sobre_nos'] = array (
-            'route' => '/about_us',
+            'route' => '/about-us',
             'controller' => 'indexController',
             'action' => 'aboutUs'
         );
 
-        $this->routes = $routes;
+        $routes['login'] = array (
+            'route' => '/login',
+            'controller' => 'indexController',
+            'action' => 'login'
+        );
+
+        $routes['register'] = array (
+            'route' => '/register',
+            'controller' => 'indexController',
+            'action' => 'register'
+        );
+        
+        $routes['authenticate'] = array (
+            'route' => '/auth',
+            'controller' => 'authController',
+            'action' => 'auth'
+        );
+
+        $this->setRoutes($routes);
+
+    }
+
+    public function run($url) {
+
+        $count = 0;
+
+        foreach ($this->getRoutes() as $key => $route) {
+
+            if($url == $route['route']) {
+
+                $class = "App\\Controllers\\" . ucfirst($route['controller']);
+
+                    $controller = new $class;
+                    $action = $route['action'];
+                    $controller->$action();
+                    break;
+
+            } else {
+                $count = $count + 1;
+            }
+            
+        }
+
+        if($count == sizeof($this->routes)) {
+            header('Location: /?erro');
+        }
+
 
     }
 

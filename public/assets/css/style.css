@@ -1,0 +1,53 @@
+body {
+    color: black;
+    background-color: rgb(46, 148, 196);
+}
+
+div {
+    background-color: #fff;
+    height: 480px;
+}
+
+ul {
+    position: sticky;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 30px;
+    border-bottom-right-radius: 62%;
+    border-bottom-left-radius: 62%;
+    box-shadow: 4px 1px 11px 2px #000;
+    background-color: #fff;
+}
+
+ul li {
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    text-align: center;
+    background-color: #fff;
+}
+
+h1 {
+    font-size: 8vw;
+    color: blue;
+}
+
+#conteudo {
+    margin: 30px auto;
+    padding: 15px 0;
+    box-shadow: 6px 6px 5px 1px #000;
+}
