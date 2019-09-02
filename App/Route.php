@@ -56,6 +56,12 @@ class Route {
             'controller' => 'indexController',
             'action' => 'register'
         );
+
+        $routes['registerUser'] = array (
+            'route' => '/register-user',
+            'controller' => 'indexController',
+            'action' => 'registerUser'
+        );
         
         $routes['authenticate'] = array (
             'route' => '/auth',
@@ -89,7 +95,8 @@ class Route {
         }
 
         if($count == sizeof($this->routes)) {
-            header('Location: /?erro');
+            echo "Erro de rota";
+            // header('Location: /?erro');
         }
 
 

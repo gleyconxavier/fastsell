@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
-class IndexController {
+use App\Connection;
+
+class IndexController extends Connection {
 
     protected $view;
 
@@ -61,38 +63,48 @@ class IndexController {
 
     public function register() {
         $this->view->title = 'Cadastrar';
+        $this->view->registerError = '';
         $this->render('register');
     }
 
     public function registerUser() {
 
-		$usuario = Container::getModel('User');
+		$user = $this->getModel('User');
 
-		$usuario->__set('name', $_POST['name']);
-		$usuario->__set('email', $_POST['email']);
-		$usuario->__set('passwd', md5($_POST['passwd']));
-
+        $user->__set('name', $_POST['name']);
+        $user->__set('surname', $_POST['surname']);
+		$user->__set('email', $_POST['email']);
+        $user->__set('passwd', md5($_POST['passwd']));
+        $user->__set('username', $_POST['username']);
 		
-		if($usuario->registerUser() && count($usuario->getUserByEmail()) == 0) {
+		if($user->validUser() && count($user->getUserByEmail()) == 0) {
 		
-				$usuario->salvar();
-
-				$this->render('cadastro');
+				$user->save();
+                $this->view->title = 'Sucesso';
+				$this->render('register-user');
 
 		} else {
 
-			$this->view->usuario = array(
+			$this->view->user = array(
 				'name' => $_POST['name'],
 				'email' => $_POST['email'],
 				'passwd' => $_POST['passwd'],
 			);
 
 			$this->view->registerError = true;
-
+            $this->view->title = 'Erro';
 			$this->render('register');
 		}
 
-	}
+    }
+
+    public static function getModel($model) {
+        $class = "\\App\\Models\\".ucfirst($model);
+        $conn = Connection::getDb();
+
+        return new $class($conn);
+    }
+    
 }
 
 ?>

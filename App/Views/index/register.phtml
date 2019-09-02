@@ -1,13 +1,13 @@
 <section>
     <div>
-        <form action="/registerUser" method="POST">
+        <form action="/register-user" method="POST">
             </fieldset>
                 <legend>Cadastro</legend>
-                <input type="text" value="" name="name" placeholder="Nome">
-                <input type="text" name="surname" placeholder="Sobrenome completo">
-                <input type="email" name="email" placeholder="Email">
-                <input type="text" name="username" placeholder="Nome de usuário">
-                <input type="password" name="passwd" placeholder="Senha">
+                <input type="text" value=""name="name" placeholder="Nome">
+                <input type="text" value="" name="surname" placeholder="Sobrenome completo">
+                <input type="email" value="" name="email" placeholder="Email">
+                <input type="text" value="" name="username" placeholder="Nome de usuário">
+                <input type="password" value="" name="passwd" placeholder="Senha">
             </fieldset>
 
             <fieldset>
@@ -15,5 +15,10 @@
                 <button type="submit">Enviar</button>
             </fieldset>
         </form>
+        <?php if($this->view->registerError) { ?>
+            <div id="formError">
+                <small>* Erro ao tentar realizar o cadastro, verifique se os campos foram preenchidos corretamente.</small>
+            </div>
+        <?php } ?>
     </div>
 </section>
