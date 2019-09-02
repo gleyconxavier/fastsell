@@ -6,6 +6,7 @@ use App\Connection;
  
  class User extends Connection {
 
+    private $id;
     private $name;
     private $surname;
     private $email;
@@ -20,12 +21,12 @@ use App\Connection;
 		$this->db = $db;
 	}
 
-    public function __get($atributo) {
-        return $this->$atributo;
+    public function __get($atribute) {
+        return $this->$atribute;
     }
 
-    public function __set($atributo, $valor) {
-        $this->$atributo = $valor;
+    public function __set($atribute, $value) {
+        $this->$atribute = $value;
     }
 
     public function save() {
@@ -60,6 +61,24 @@ use App\Connection;
             return true;
         }
     }
+
+    public function auth() {
+
+		$query = "select id, name, email from users where email = :email and passwd = :passwd";
+		$stmt = $this->db->prepare($query);
+		$stmt->bindValue(':email', $this->__get('email'));
+        $stmt->bindValue(':passwd', md5($this->__get('passwd')));
+        $stmt->execute();
+
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+		if($user['id'] != '' && $user['name'] != '') {
+			$this->__set('id', $user['id']);
+			$this->__set('name', $user['name']);
+		}
+
+		return $this;
+	}
 
 }
 

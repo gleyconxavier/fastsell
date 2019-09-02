@@ -69,6 +69,12 @@ class Route {
             'action' => 'auth'
         );
 
+		$routes['timeline'] = array(
+			'route' => '/timeline',
+			'controller' => 'AppController',
+			'action' => 'timeline'
+		);
+
         $this->setRoutes($routes);
 
     }
