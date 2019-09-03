@@ -19,7 +19,7 @@ class AuthController extends Connection {
 			session_start();
 
 			$_SESSION['id'] = $user->__get('id');
-			$_SESSION['nome'] = $user->__get('name');
+			$_SESSION['name'] = $user->__get('name');
 
 			header('Location: /timeline');
 

@@ -73,7 +73,19 @@ class Route {
 			'route' => '/timeline',
 			'controller' => 'AppController',
 			'action' => 'timeline'
-		);
+        );
+        
+        $routes['registerItem'] = array (
+            'route' => '/register-item',
+            'controller' => 'AppController',
+            'action' => 'registerItem'
+        );
+
+        $routes['authItem'] = array (
+            'route' => '/auth-item',
+            'controller' => 'AppController',
+            'action' => 'authItem'
+        );
 
         $this->setRoutes($routes);
 

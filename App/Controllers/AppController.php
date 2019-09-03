@@ -67,11 +67,23 @@ class AppController extends Connection {
 
         session_start();
         
-		// if(!isset($_SESSION['id']) || $_SESSION['id'] == '' || !isset($_SESSION['name']) || $_SESSION['name'] == '') {
-		// 	header('Location: /?login=erro');
-		// }	
+		if(!isset($_SESSION['id']) || $_SESSION['id'] == '' || !isset($_SESSION['name']) || $_SESSION['name'] == '') {
+			header('Location: /?login=erro');
 
-	}
+        }
+    }
+
+    public function registerItem() {
+        $this->view->title = 'Novo anúncio';
+        $this->render('register-item');
+    }
+
+    public function authItem() {
+        echo "Chamou authitem";
+        $this->view->title = 'Novo anúncio';
+        $this->render('register-item');
+    }
     
 }
+
 ?>
