@@ -1,7 +1,8 @@
-<form action="auth-item" method="post">
+<form action="auth-item" method="post" enctype="multipart/form-data">
     <h4>Novo anúncio</h4>
+    <input type="file" name="itemImage" id="image">
     <input type="text" name="name" placeholder="Nome do item">
     <input type="text" name="description" placeholder="Descrição e características do item">
     <input type="number" name="value" placeholder="valor">
-    <button type="submit">Criar</button>
+    <button type="submit" id="insert">Criar</button>
 </form>

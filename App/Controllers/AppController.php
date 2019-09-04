@@ -79,9 +79,54 @@ class AppController extends Connection {
     }
 
     public function authItem() {
-        echo "Chamou authitem";
+        $this->authValid();
+
+        $item = $this->getModel('Item');
+        print_r($_SESSION);
+        $image = $_FILES['itemImage'];
+
+        if(!file_exists('../App/images/' . $_SESSION['id'] .'/')) {
+            mkdir('../App/images/' . $_SESSION['id'] .'/', 0740, true);
+        }
+
+        $_UP['folder'] = '../App/images/' . $_SESSION['id'] . '/post' . time();
+        $_UP['size'] = 1024 * 1024 * 100;
+        $_UP['extensions'] = array('png', 'jpg', 'jpeg', 'gif');
+
+        // end only receive a string
+        $imageTmp = explode('.', $image['name']);
+        $extension = strtolower(end($imageTmp));
+
+        if(array_search($extension, $_UP['extensions']) === false) {
+            echo "Extensão de imagem inválida.";
+        } elseif ($_UP['size'] < $image['size']) {
+            echo  "Tamanho de imagem excede o permitido.";
+        } else {
+            $finalName = time() . '.' . $extension;
+        }
+
+        if(move_uploaded_file($image['tmp_name'], $_UP['folder'] . $finalName)) {
+            echo "Imagem cadastrada.";
+        } else {
+            echo "Ocorreu um erro durante o upload :(";
+        }
+
+        $item->__set('name', $_POST['name']);
+		$item->__set('description', $_POST['description']);
+        $item->__set('value', $_POST['value']);
+        $item->__set('anouncePath', $_UP['folder']);
+        $item->__set('userId', $_SESSION['id']);
+
+        $item->itemSave();
+
         $this->view->title = 'Novo anúncio';
         $this->render('register-item');
+    }
+
+    public function itemSave() {
+        $this->authValid();
+
+
     }
     
 }
