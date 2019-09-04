@@ -84,12 +84,17 @@ class AppController extends Connection {
         $item = $this->getModel('Item');
         print_r($_SESSION);
         $image = $_FILES['itemImage'];
+        $postFolder = 'post' . time() * rand();
 
         if(!file_exists('../App/images/' . $_SESSION['id'] .'/')) {
             mkdir('../App/images/' . $_SESSION['id'] .'/', 0740, true);
         }
 
-        $_UP['folder'] = '../App/images/' . $_SESSION['id'] . '/post' . time();
+        if(!file_exists('../App/images/' . $_SESSION['id'] . '/' . $postFolder . '/')) {
+            mkdir('../App/images/' . $_SESSION['id'] . '/' . $postFolder . '/', 0740, true);
+        }
+
+        $_UP['folder'] = '../App/images/' . $_SESSION['id'] . '/' . $postFolder . '/';
         $_UP['size'] = 1024 * 1024 * 100;
         $_UP['extensions'] = array('png', 'jpg', 'jpeg', 'gif');
 
