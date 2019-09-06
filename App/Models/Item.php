@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Connection;
 
 class Item extends Connection {
-    
+
     private $id;
     private $userId;
     private $item;

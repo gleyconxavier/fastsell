@@ -81,6 +81,12 @@ class Route {
             'action' => 'registerItem'
         );
 
+        $routes['registerSuccess'] = array (
+            'route' => '/register-success',
+            'controller' => 'AppController',
+            'action' => 'registerSuccess'
+        );
+
         $routes['authItem'] = array (
             'route' => '/auth-item',
             'controller' => 'AppController',

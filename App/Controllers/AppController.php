@@ -24,6 +24,11 @@ class AppController extends Connection {
 
     }
 
+    public function registerSuccess() {
+        $this->view->title = 'Sucesso!';
+		$this->render('register-success');
+    }
+
     public static function getModel($model) {
 		$class = "\\App\\Models\\".ucfirst($model);
 		$db = Connection::getDb();
@@ -79,59 +84,70 @@ class AppController extends Connection {
     }
 
     public function authItem() {
+
         $this->authValid();
 
         $item = $this->getModel('Item');
-        print_r($_SESSION);
-        $image = $_FILES['itemImage'];
+
+
+        $images = $_FILES['itemImages'];
         $postFolder = 'post' . time() * rand();
 
-        if(!file_exists('../App/images/' . $_SESSION['id'] .'/')) {
-            mkdir('../App/images/' . $_SESSION['id'] .'/', 0740, true);
-        }
-
-        if(!file_exists('../App/images/' . $_SESSION['id'] . '/' . $postFolder . '/')) {
-            mkdir('../App/images/' . $_SESSION['id'] . '/' . $postFolder . '/', 0740, true);
-        }
-
         $_UP['folder'] = '../App/images/' . $_SESSION['id'] . '/' . $postFolder . '/';
-        $_UP['size'] = 1024 * 1024 * 100;
+        $_UP['size'] = 5 * 1024 * 1024;
         $_UP['extensions'] = array('png', 'jpg', 'jpeg', 'gif');
 
-        // end only receive a string
-        $imageTmp = explode('.', $image['name']);
-        $extension = strtolower(end($imageTmp));
 
-        if(array_search($extension, $_UP['extensions']) === false) {
-            echo "Extensão de imagem inválida.";
-        } elseif ($_UP['size'] < $image['size']) {
-            echo  "Tamanho de imagem excede o permitido.";
-        } else {
-            $finalName = time() . '.' . $extension;
-        }
+        if( isset($images['name']) && isset($_POST['name']) && isset($_POST['value'])) {
+      
+            $total_files = count($images['name']);
+            
+            for($key = 0; $key < $total_files; $key++) {
 
-        if(move_uploaded_file($image['tmp_name'], $_UP['folder'] . $finalName)) {
-            echo "Imagem cadastrada.";
-        } else {
-            echo "Ocorreu um erro durante o upload :(";
-        }
+                $imageTmp = explode('.', $images['name'][$key]);
+                $extension = strtolower(end($imageTmp));
 
-        $item->__set('name', $_POST['name']);
-		$item->__set('description', $_POST['description']);
-        $item->__set('value', $_POST['value']);
-        $item->__set('anouncePath', $_UP['folder']);
-        $item->__set('userId', $_SESSION['id']);
+                if ($_UP['size'] < $images['size'][$key] || $images['size'][$key] == '') {
 
-        $item->itemSave();
+                    $this->view->status =  "Tamanho de imagem excede o permitido.";
+
+                } else if (!!array_search($extension, $_UP['extensions'])) {
+
+                    if(!file_exists('../App/images/' . $_SESSION['id'] .'/')) {
+                        mkdir('../App/images/' . $_SESSION['id'] .'/', 0740, true);
+                    }
+            
+                    if(!file_exists('../App/images/' . $_SESSION['id'] . '/' . $postFolder . '/')) {
+                        mkdir('../App/images/' . $_SESSION['id'] . '/' . $postFolder . '/', 0740, true);
+                    }
+
+                    $finalName = time() . $key . '.' . $extension;
+                    move_uploaded_file($images['tmp_name'][$key], $_UP['folder'] . $finalName);
+
+                    $this->view->status = "Imagem cadastrada.";
+
+                }  else {
+
+                    $this->view->status = "Extensão de imagem inválida.";
+
+                }
+                
+                if($key === $total_files) {
+                    $item->__set('name', $_POST['name']);
+                    $item->__set('description', $_POST['description']);
+                    $item->__set('value', $_POST['value']);
+                    $item->__set('anouncePath', $_UP['folder']);
+                    $item->__set('userId', $_SESSION['id']);
+            
+                    $item->itemSave();
+                }
+              
+              }
+              
+            }
 
         $this->view->title = 'Novo anúncio';
         $this->render('register-item');
-    }
-
-    public function itemSave() {
-        $this->authValid();
-
-
     }
     
 }

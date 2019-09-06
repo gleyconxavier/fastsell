@@ -1,8 +1,21 @@
 <form action="auth-item" method="post" enctype="multipart/form-data">
     <h4>Novo anúncio</h4>
-    <input type="file" name="itemImage" id="image">
+    <input type="file" name="itemImages[]" multiple="multiple" id="image">
     <input type="text" name="name" placeholder="Nome do item">
     <input type="text" name="description" placeholder="Descrição e características do item">
     <input type="number" name="value" placeholder="valor">
     <button type="submit" id="insert">Criar</button>
 </form>
+
+<div class="error">
+<h4><?php 
+        if(isset($this->view->status)) {
+            echo $this->view->status;
+        }
+        ?></h4>
+</div>
+
+<div class="tips center">
+    <p>Formatos aceitos: '.jpg, .jpeg .gif'</p>
+    <p>Tamanho Máximo: 5 Mb.</p>
+</div>
