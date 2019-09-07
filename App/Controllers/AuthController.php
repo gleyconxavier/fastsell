@@ -7,6 +7,7 @@ class AuthController extends Connection {
     	
 	public function auth() {
 		
+		
 		$user = $this->getModel('User');
 
 		$user->__set('email', $_POST['email']);
@@ -24,8 +25,8 @@ class AuthController extends Connection {
 			header('Location: /timeline');
 
 		} else {
-			echo "erro na válidação de usuário";
-			// header('Location: /?login=error');
+			$error = "erro na válidação de usuário";
+			header('Location: /login?error=invalid');
 		}
 
 	}

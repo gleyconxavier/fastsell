@@ -1,16 +1,16 @@
 <form action="auth-item" method="post" enctype="multipart/form-data">
     <h4>Novo anúncio</h4>
     <input type="file" name="itemImages[]" multiple="multiple" id="image">
-    <input type="text" name="name" placeholder="Nome do item">
+    <input type="text" name="name" placeholder="Nome do item" required>
     <input type="text" name="description" placeholder="Descrição e características do item">
-    <input type="number" name="value" placeholder="valor">
+    <input type="number" name="value" placeholder="valor" required>
     <button type="submit" id="insert">Criar</button>
 </form>
 
-<div class="error">
+<div class="success">
 <h4><?php 
-        if(isset($this->view->status)) {
-            echo $this->view->status;
+        if(isset($_GET['status']) && $_GET['status'] === 'success') {
+            echo "Anúncio cadastrado com sucesso!";
         }
         ?></h4>
 </div>

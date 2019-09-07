@@ -136,7 +136,7 @@ class AppController extends Connection {
 
                 }
                 
-                if(($key + 1) === $total_files) {
+                if(($key + 1) === $total_files && isset($finalName)) {
                     $item->__set('name', $_POST['name']);
                     $item->__set('description', $_POST['description']);
                     $item->__set('value', $_POST['value']);
@@ -144,11 +144,10 @@ class AppController extends Connection {
                     $item->__set('userId', $_SESSION['id']);
             
                     $item->itemSave();
-                    $this->view->status = "Imagem cadastrada.";
+                    header('Location: /register-item?status=success');
                 }
               
               }
-              
             }
 
         $this->view->title = 'Novo anúncio';

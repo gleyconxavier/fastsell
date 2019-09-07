@@ -1,10 +1,10 @@
 body {
     color: black;
-    background-color: #badfdb;
+    background-color: #00adb5;
 }
 
 div {
-    background-color: #fcf9ea;
+    background-color: #eeeeee;
 }
 
 ul {
@@ -18,13 +18,18 @@ ul {
 }
 
 nav {
-    display:none;
     position: absolute;
     height: 250px;
     width: 100%;
-    bottom: 0px;
+    bottom: 115px;
+    left: -400px;
     margin-left: 0px;
     margin-bottom: 80px;
+    transition: display 2s;
+}
+
+nav.expand {
+    left: 0;
 }
 
 ul li {
@@ -63,71 +68,54 @@ form {
 }
 
 button {
-    background-color: #badfdb;
-    border-color: #f8a978;
-    border-style: groove;
-    padding: 20px;
+    background-color: #222831;
+    box-shadow: inset 0px 1px 1px #f8a978;
+    color: #eeeeee;
+    border-style: solid;
+    padding: 10px;
+    font-size: 25px;
+    font-weight: bold;
     border-radius: 10px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    transition: background-color 0.8s;
 }
 
-.tips {
-    width: 280px;
-    height: 50px;
-    padding: 5px;
-    margin: 0 auto;
-    background-color: rgb(111, 221, 221);
-    border: 1px solid #111;
-    border-radius: 5px;
+button:hover {
+    background-color: #f8a978;
+    color: #badfdb;
+    cursor: pointer;
+}
+
+#responsive-menu {
+    display: block;
+    position: fixed;
+    box-shadow: None;
+    bottom: 35px;
+    left: 5px;
+    background-color: rgba(0,0,0,0.1);
+    transform: rotate(90deg);
+    transition: transform 0.2s;
+    z-index: 2;
+}
+
+#responsive-menu:active {
+    transform: rotate( 180deg);
+}
+
+#formLogin div {
     text-align: center;
 }
 
-.error {
-    color: red;
-    font-weight: bold;
+#formLogin input {
+    padding: 12px;
+    border: none;
+    font-size: 1em;
+    border-bottom: 1px solid black;
+    border-radius: 4px;
 }
 
-.itemArea {
-    box-shadow: 1px 1px 11px #ffc5a1;
-    border-radius: 12px;
-    padding: 4px;
-    margin: 20px;
-    height: auto;
-    width: auto;
-}
-
-.itemArea h2 {
-    margin-top: 50px;
-    padding-top: 10px;
-    color: #f8a978;
-}
-
-.itemImage {
-    max-width:100%;
-    max-height:100%;
-}
-
-.portrait {
-    /* border: 1px solid red; */
-    height: 80px;
-    width: 60px;
-    margin: 2px 4px;
-    float:left;
-    background-color: #fff;
-}
-
-.itemInfo span {
-    color: #ffc5a1;
-}
-
-.itemDescription {
-    color: #333;
-}
-
-.itemPrice {
-    color: #badfdb;
-    font-weight: bold;
-    font-size: 2em;
+#formLogin button {
+    margin: 10px 20px;
 }
 
 #conteudo {
@@ -145,4 +133,68 @@ button {
     height: 40px;
     border: 1px dashed #cecece;
     border-radius: 10px;
+}
+
+.tips {
+    width: 280px;
+    height: 50px;
+    padding: 5px;
+    margin: 0 auto;
+    background-color: rgb(111, 221, 221);
+    border: 1px solid #111;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.error {
+    color: rgb(231, 82, 82);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.success {
+    color: rgb(68, 185, 53);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.itemArea {
+    box-shadow: 1px 1px 11px #393e46;
+    border-radius: 12px;
+    padding: 4px;
+    margin: 20px;
+    height: auto;
+    width: auto;
+}
+
+.itemArea {
+    margin-top: 50px;
+    padding-top: 10px;
+    color: #f8a978;
+}
+
+.itemName {
+    color: #222831;
+}
+
+.itemImage {
+    max-width:100%;
+    max-height:100%;
+}
+
+.portrait {
+    /* border: 1px solid red; */
+    height: 80px;
+    width: 60px;
+    margin: 2px 4px;
+    float:left;
+    background-color: #fff;
+}
+
+.itemDescription {
+    color: #222831;
+}
+
+.itemPrice {
+    color: #00adb5;
+    font-weight: bold;
+    font-size: 2em;
 }

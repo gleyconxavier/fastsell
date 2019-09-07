@@ -1,10 +1,18 @@
 <div>
-    <h1>Entrar</h1>
-    <form action="/auth" method="POST">
-
-            <input type="text" name="email" placeholder="Email">
-            <input type="password" name="passwd" placeholder="Senha">
+    <form id="formLogin" action="/auth" method="POST">
+        <h1>Entrar</h1>
+        <div>
+            <input type="text" name="email" placeholder="Email" required>
+            <input type="password" name="passwd" placeholder="Senha" required>
             <button type="submit">Entrar</button>
+        </div>
+
+        <p class="error"><?php
+            if(isset($_GET['error']) && $_GET['error'] == 'invalid') {
+               echo "Impossível relizar Login, usuário inexistente.";
+            }
+        ?></p>
 
     </form>
+
 </div>
