@@ -1,10 +1,10 @@
 body {
     color: black;
-    background-color: rgb(46, 148, 196);
+    background-color: #badfdb;
 }
 
 div {
-    background-color: #fff;
+    background-color: #fcf9ea;
 }
 
 ul {
@@ -18,6 +18,7 @@ ul {
 }
 
 nav {
+    display:none;
     position: absolute;
     height: 250px;
     width: 100%;
@@ -49,13 +50,25 @@ footer {
 }
 
 h1 {
-    font-size: 8vw;
-    color: blue;
+    font-size: 25px;
+    padding: 5px;
+    margin-left: 20px;
+    font-style: italic;
+    color: #f8a978;
 }
 
 form {
     margin: 5px auto;
     width: 300px;
+}
+
+button {
+    background-color: #badfdb;
+    border-color: #f8a978;
+    border-style: groove;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .tips {
@@ -72,6 +85,49 @@ form {
 .error {
     color: red;
     font-weight: bold;
+}
+
+.itemArea {
+    box-shadow: 1px 1px 11px #ffc5a1;
+    border-radius: 12px;
+    padding: 4px;
+    margin: 20px;
+    height: auto;
+    width: auto;
+}
+
+.itemArea h2 {
+    margin-top: 50px;
+    padding-top: 10px;
+    color: #f8a978;
+}
+
+.itemImage {
+    max-width:100%;
+    max-height:100%;
+}
+
+.portrait {
+    /* border: 1px solid red; */
+    height: 80px;
+    width: 60px;
+    margin: 2px 4px;
+    float:left;
+    background-color: #fff;
+}
+
+.itemInfo span {
+    color: #ffc5a1;
+}
+
+.itemDescription {
+    color: #333;
+}
+
+.itemPrice {
+    color: #badfdb;
+    font-weight: bold;
+    font-size: 2em;
 }
 
 #conteudo {

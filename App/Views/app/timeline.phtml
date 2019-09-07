@@ -5,10 +5,30 @@
 <h1>Timeline</h1>
 
 <section class='showOff'>
-    <ul>
-        <li>
-            <div></div>
-            <div></div>
-        </li>
-    </ul>
+<?php foreach($this->view->userItens as $item => $post) { ?>
+				<div class="itemArea">
+                <?php
+
+                $dirname = $post['anouncePath'];
+                
+                $filenames = glob("$dirname*.{jpg,jpeg,png,gif}", GLOB_BRACE);
+
+                foreach ($filenames as $filename)
+                {
+                    ?>
+                    <div class="portrait">
+                        <img class="itemImage" src="<?php 
+                        $filename = str_replace('../public', '', $filename);            
+                        echo $filename ?>" />
+                    </div>
+                <?php }?>
+
+					<div class="itemInfo">
+                        <h2>Nome: <?=$post['name']?></h2>
+                        <p class="itemDescription"><span>Descrição do item:</span> <?=$post['description']?></p>
+						<p class="itemPrice">R$<?=$post['value']?>,00</p>
+						<br />
+                    </div>
+                </div>
+<?php } ?>
 </section>

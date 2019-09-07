@@ -59,4 +59,35 @@ class Item extends Connection {
     public function itemReturn() {
 
     }
+
+    public function userItensByDate() {
+
+        // $query = 'select * from itens where userId = currentUser
+        // values(:currentUser)'
+
+            $query = "
+                select 
+                    t.id, 
+                    t.name,
+                    t.description,
+                    t.value,
+                    t.anouncePath,
+                    t.userId,
+                    DATE_FORMAT(t.postDate, '%d/%m/%Y %H:%i') as postDate
+                from 
+                    itens as t
+                where 
+                    t.userId = :userId
+                order by
+                    t.postDate desc
+            ";
+    
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':userId', $this->__get('userId'));
+            $stmt->execute();
+    
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        
+    }
 }
