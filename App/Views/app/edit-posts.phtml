@@ -1,4 +1,4 @@
-<form action="auth-item" method="post" enctype="multipart/form-data">
+<form action="item-edit" method="post" enctype="multipart/form-data">
     <h4>Editar anúncio</h4>
 
     <input type="file" name="itemImages[]" multiple="multiple" id="image">
@@ -6,6 +6,8 @@
     <input type="text" name="description" placeholder="Descrição e características do item" value = <?= $this->view->post['description'] ?>>
     <input type="text" name="contact" placeholder="Contato" value = <?= $this->view->post['contact'] ?> required>
     <input type="number" name="value" placeholder="Valor" value = <?= $this->view->post['value'] ?> required>
+    <input type="hidden" name="postId" value = "<?= $this->view->post['id'] ?>">
+    <input type="hidden" name="anouncePath" value = "<?= $this->view->post['anouncePath'] ?>"> 
     
     <button type="submit" id="insert">Atualizar</button>
 </form>

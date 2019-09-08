@@ -54,6 +54,17 @@ class Item extends Connection {
 
     public function itemEdit($item, $userId) {
 
+        $query = "UPDATE itens SET name=:name, description=:description, value=:value, anouncePath=:anouncePath, contact=:contact WHERE id=:itemId AND userId=:userId";
+        $stmt = $this->db->prepare($query);
+
+        $stmt->bindValue(':name', $this->__get('name'));
+        $stmt->bindValue(':description', $this->__get('description'));
+        $stmt->bindValue(':value', $this->__get('value'));
+        $stmt->bindValue(':anouncePath', $this->__get('anouncePath'));
+        $stmt->bindValue(':contact', $this->__get('contact'));
+        $stmt->bindValue(':userId', $userId);
+        $stmt->bindValue(':itemId', $item);
+        $stmt->execute();
 
     }
 

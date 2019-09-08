@@ -98,6 +98,12 @@ class Route {
 			'controller' => 'AppController',
 			'action' => 'deletePost'
         );
+
+        $routes['itemEdit'] = array(
+			'route' => '/item-edit',
+			'controller' => 'AppController',
+			'action' => 'itemEdit'
+        );
         
         $routes['registerItem'] = array (
             'route' => '/register-item',

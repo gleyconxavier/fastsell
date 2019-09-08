@@ -38,6 +38,84 @@ class AppController extends Connection {
         header('Location: /my-itens');
     }
 
+    public function itemEdit() {
+        $this->authValid();
+
+        $itemMod = $this->getModel('Item');
+
+        if(isset($_FILES['itemImages']) && $_FILES['itemImages'] != '') {
+           $images = $_FILES['itemImages'];
+        } else {
+
+            print_r($_POST);
+
+            $itemMod->__set('name', $_POST['name']);
+            $itemMod->__set('description', $_POST['description']);
+            $itemMod->__set('value', $_POST['value']);
+            $itemMod->__set('anouncePath', $_POST['anouncePath']);
+            $itemMod->__set('contact', $_POST['contact']);
+
+            $itemMod->itemEdit($_POST['postId'], $_SESSION['id']);
+
+        }
+
+        $postFolder = 'post' . time() * rand();
+
+        $_UP['folder'] = '../public/images/' . $_SESSION['id'] . '/' . $postFolder . '/';
+        $_UP['size'] = 5 * 1024 * 1024;
+        $_UP['extensions'] = array('png', 'jpg', 'jpeg', 'gif');
+
+
+        if( isset($images['name']) && isset($_POST['name']) && isset($_POST['value'])) {
+      
+            $total_files = count($images['name']);
+            
+            for($key = 0; $key < $total_files; $key++) {
+
+                $imageTmp = explode('.', $images['name'][$key]);
+                $extension = strtolower(end($imageTmp));
+
+                if ($_UP['size'] < $images['size'][$key] || $images['size'][$key] == '') {
+
+                    $this->view->status =  "Tamanho de imagem excede o permitido.";
+
+                } else if (!!array_search($extension, $_UP['extensions'])) {
+
+                    if(!file_exists('../public/images/' . $_SESSION['id'] .'/')) {
+                        mkdir('../public/images/' . $_SESSION['id'] .'/', 0740, true);
+                    }
+            
+                    if(!file_exists('../public/images/' . $_SESSION['id'] . '/' . $postFolder . '/')) {
+                        mkdir('../public/images/' . $_SESSION['id'] . '/' . $postFolder . '/', 0740, true);
+                    }
+
+                    $finalName = time() . $key . '.' . $extension;
+                    move_uploaded_file($images['tmp_name'][$key], $_UP['folder'] . $finalName);
+
+                }  else {
+
+                    $this->view->status = "Extensão de imagem inválida.";
+
+                }
+                
+                if(($key + 1) === $total_files && isset($finalName)) {
+
+                    $itemMod->__set('name', $_POST['name']);
+                    $itemMod->__set('description', $_POST['description']);
+                    $itemMod->__set('value', $_POST['value']);
+                    $itemMod->__set('anouncePath', $_UP['folder']);
+                    $itemMod->__set('contact', $_POST['contact']);
+
+                    $itemMod->itemEdit($_POST['postId'], $_SESSION['id']);
+                }
+            }
+
+        } 
+
+        // header('Location: /my-itens');
+
+    }
+
     public function editPost() {
         $this->authValid();
 
@@ -45,6 +123,7 @@ class AppController extends Connection {
         $post = $itemMod->itemReturn($_POST['postId'], $_SESSION['id']);
         $this->view->title = 'Editar anúncio';
         $this->view->post = $post;
+        
         $this->render('edit-posts');
     }
 
