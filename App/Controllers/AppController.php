@@ -123,6 +123,22 @@ class AppController extends Connection {
         $this->render('edit-posts');
     }
 
+    public function searchItem() {
+        
+        $this->authValid();
+        $itemMod = $this->getModel('Item');
+
+        if(isset($_POST['search']) && $_POST['search'] != '') {
+            $item = strtolower($_POST['search']);
+
+            $item = $itemMod->itemSearch($item);
+            $this->view->title = "Timeline";
+            $this->view->userItens = $item;
+            $this->render('timeline');
+
+        }
+    }
+
     public function timeline() {
 
         $this->authValid();

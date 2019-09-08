@@ -66,6 +66,10 @@ class IndexController extends Connection {
         $this->render('register');
     }
 
+    public function contact() {
+        $this->render('contact');
+    }
+    
     public function registerUser() {
 
 		$user = $this->getModel('User');

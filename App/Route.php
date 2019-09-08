@@ -123,6 +123,18 @@ class Route {
             'action' => 'authItem'
         );
 
+        $routes['searchItem'] = array (
+            'route' => '/search',
+            'controller' => 'AppController',
+            'action' => 'searchItem'
+        );
+
+        $routes['contact'] = array (
+            'route' => '/contact',
+            'controller' => 'IndexController',
+            'action' => 'contact'
+        );
+
         $this->setRoutes($routes);
 
     }

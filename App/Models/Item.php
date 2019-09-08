@@ -77,6 +77,33 @@ class Item extends Connection {
 
     }
 
+    public function itemSearch($item) {
+
+        $query = "
+                select 
+                    t.id, 
+                    t.name,
+                    t.description,
+                    t.value,
+                    t.anouncePath,
+                    t.contact,
+                    t.userId,
+                    t.username,
+                    DATE_FORMAT(t.postDate, '%d/%m/%Y %H:%i') as postDate
+                from 
+                    itens as t
+                where 
+                    t.name LIKE :itemName
+            ";
+    
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':itemName', $item);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+    }
+
     public function itemReturn($item, $userId) {
 
         $query = "
