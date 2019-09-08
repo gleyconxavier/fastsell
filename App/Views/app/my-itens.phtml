@@ -1,12 +1,7 @@
-<p>Usuário: <?= $_SESSION['name'] ?>.</p>
-<a href="/exit"><button>Sair</button></a>
-
-<a href="/register-item"><button>Novo anúncio</button></a>
-<a href="/my-itens"><button>Meus anúncios</button></a>
-
-<h1>Timeline</h1>
-
 <section class='showOff'>
+<section>
+    <h1>Meus anúncios</h1>
+</section>
 <?php foreach($this->view->userItens as $post) { ?>
 				<div class="itemArea">
                 <?php
@@ -27,13 +22,25 @@
                 <?php }?>
 
 					<div class="itemInfo">
-                        <h1><span class="itemName">Anunciante:</span><?= $post['username'] ?></h1>
                         <h2><span class="itemName">Nome:</span> <?=$post['name']?></h2>
                         <p><span class="itemDescription">Descrição do item:</span> <?=$post['description']?></p>
                         <p class="itemPrice">R$<?=$post['value']?>,00</p>
                         <span class="date"><?= $post['postDate'] ?></span>
+                        <form id="multForm" method="post">
+                            <input type="hidden" name="postId" value=<?= $post['id'] ?>>
+                            <input type="button" onclick="submitForm('deletePost')" value="Excluir" />
+                            <input type="button" onclick="submitForm('editPost')" value="Editar" />
+                        </form>
 						<br />
                     </div>
                 </div>
 <?php } ?>
 </section>
+
+<script type="text/javascript">
+    function submitForm(action) {
+        var form = document.getElementById('multForm');
+        form.action = action;
+        form.submit();
+    }
+</script>

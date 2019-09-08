@@ -46,7 +46,6 @@ class IndexController extends Connection {
 
     public function index() {
         $this->view->title = 'Home';
-        $this->view->dados = array("Dados", "de", "Teste");
         $this->render('index');
 
     }

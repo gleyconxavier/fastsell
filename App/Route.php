@@ -69,10 +69,34 @@ class Route {
             'action' => 'auth'
         );
 
+        $routes['exit'] = array (
+            'route' => '/exit',
+            'controller' => 'authController',
+            'action' => 'exit'
+        );
+
 		$routes['timeline'] = array(
 			'route' => '/timeline',
 			'controller' => 'AppController',
 			'action' => 'timeline'
+        );
+
+        $routes['userItens'] = array(
+			'route' => '/my-itens',
+			'controller' => 'AppController',
+			'action' => 'userItens'
+        );
+
+        $routes['editPost'] = array(
+			'route' => '/editPost',
+			'controller' => 'AppController',
+			'action' => 'editPost'
+        );
+
+        $routes['deletePost'] = array(
+			'route' => '/deletePost',
+			'controller' => 'AppController',
+			'action' => 'deletePost'
         );
         
         $routes['registerItem'] = array (

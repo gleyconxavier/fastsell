@@ -25,7 +25,7 @@ nav {
     left: -400px;
     margin-left: 0px;
     margin-bottom: 80px;
-    transition: display 2s;
+    transition: left 0.3s;
 }
 
 nav.expand {
@@ -183,8 +183,8 @@ button:hover {
 .portrait {
     /* border: 1px solid red; */
     height: 80px;
-    width: 60px;
-    margin: 2px 4px;
+    width: 70px;
+    margin: 5px 10px;
     float:left;
     background-color: #fff;
 }
@@ -197,4 +197,25 @@ button:hover {
     color: #00adb5;
     font-weight: bold;
     font-size: 2em;
+}
+
+.date {
+    float: right;
+    margin-right: 10px;
+    color: green;
+}
+
+.show {
+    top: 30%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    scale: 6;
+    position: fixed;
+    width: 96%;
+    height: auto;
+    margin: 0 auto;
+    border: 2px solid #f8a978;
+    border-radius: 5px;
+    text-align: center;
 }

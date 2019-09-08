@@ -12,6 +12,42 @@ class AppController extends Connection {
         $this->view = new \stdClass();
     }
 
+    public function userItens() {
+
+        $this->authValid();
+			
+        $usuario = $this->getModel('User');
+        $item = $this->getModel('Item');
+		$usuario->__set('id', $_SESSION['id']);
+
+        $this->view->title = 'Meus anúncios';
+        $item->__set('userId', $_SESSION['id']);
+
+        $userItens = $item->userItensByDate();
+        $this->view->userItens = $userItens;
+
+        $this->render('my-itens');
+
+    }
+
+    public function deletePost() {
+        $this->authValid();
+        
+        $itemMod = $this->getModel('Item');
+        $itemMod->itemDelete($_POST['postId'], $_SESSION['id']);
+        header('Location: /my-itens');
+    }
+
+    public function editPost() {
+        $this->authValid();
+
+        $itemMod = $this->getModel('Item');
+        $post = $itemMod->itemReturn($_POST['postId'], $_SESSION['id']);
+        $this->view->title = 'Editar anúncio';
+        $this->view->post = $post;
+        $this->render('edit-posts');
+    }
+
     public function timeline() {
 
         $this->authValid();
@@ -23,7 +59,7 @@ class AppController extends Connection {
         $this->view->title = 'Timeline';
         $item->__set('userId', $_SESSION['id']);
 
-        $userItens = $item->userItensByDate();
+        $userItens = $item->timelineItensByDate();
         $this->view->userItens = $userItens;
 
         $this->render('timeline');
@@ -79,7 +115,7 @@ class AppController extends Connection {
         session_start();
         
 		if(!isset($_SESSION['id']) || $_SESSION['id'] == '' || !isset($_SESSION['name']) || $_SESSION['name'] == '') {
-			header('Location: /?login=erro');
+			header('Location: /');
 
         }
     }
@@ -141,7 +177,9 @@ class AppController extends Connection {
                     $item->__set('description', $_POST['description']);
                     $item->__set('value', $_POST['value']);
                     $item->__set('anouncePath', $_UP['folder']);
+                    $item->__set('contact', $_POST['contact']);
                     $item->__set('userId', $_SESSION['id']);
+                    $item->__set('username', $_SESSION['name']);
             
                     $item->itemSave();
                     header('Location: /register-item?status=success');

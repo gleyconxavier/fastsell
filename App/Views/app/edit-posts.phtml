@@ -1,0 +1,24 @@
+<form action="auth-item" method="post" enctype="multipart/form-data">
+    <h4>Editar anúncio</h4>
+
+    <input type="file" name="itemImages[]" multiple="multiple" id="image">
+    <input type="text" name="name" placeholder="Nome do item" value = "<?= $this->view->post['name'] ?>" required>
+    <input type="text" name="description" placeholder="Descrição e características do item" value = <?= $this->view->post['description'] ?>>
+    <input type="text" name="contact" placeholder="Contato" value = <?= $this->view->post['contact'] ?> required>
+    <input type="number" name="value" placeholder="Valor" value = <?= $this->view->post['value'] ?> required>
+    
+    <button type="submit" id="insert">Atualizar</button>
+</form>
+
+<div class="success">
+<h4><?php 
+        if(isset($_GET['status']) && $_GET['status'] === 'success') {
+            echo "Anúncio cadastrado com sucesso!";
+        }
+        ?></h4>
+</div>
+
+<div class="tips center">
+    <p>Formatos aceitos: '.jpg, .jpeg .gif'</p>
+    <p>Tamanho Máximo: 5 Mb.</p>
+</div>
