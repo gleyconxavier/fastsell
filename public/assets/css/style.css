@@ -37,8 +37,8 @@ ul {
     padding: 4px;
     border-bottom-right-radius: 62%;
     border-top-right-radius: 62%;
-    box-shadow: 4px 1px 11px 2px #000;
-    background-color: #fff;
+    box-shadow: 4px 1px 11px 2px #00adb5;
+    background-color: #eee;
 }
 
 nav {
@@ -61,11 +61,11 @@ ul li {
     padding: 10px 2px;
     margin-bottom: 5px;
     font-size: 25px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Cairo', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 a {
-    color: rgb(104, 92, 24);
+    color: #393e46;
     text-decoration: none;
     cursor: pointer;
 }
@@ -83,6 +83,13 @@ h1 {
     font-size: 25px;
     padding: 5px;
     margin-left: 20px;
+    color: #a76136;
+}
+
+h2 {
+    margin: 5px 0;
+    font-family: 'Arvo';
+    font-size: 14px;
     color: #a76136;
 }
 
@@ -332,4 +339,8 @@ input {
 #inputImages {
     font-size: 12px;
     margin-bottom: 10px;
+}
+
+#aboutUs {
+    margin: 0 20px;
 }

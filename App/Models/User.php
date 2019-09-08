@@ -12,7 +12,7 @@ use App\Connection;
     private $email;
     private $passwd;
     private $username;
-    private $cpf;
+    private $userIp;
     private $avatar;
 
     protected $db;
@@ -31,15 +31,16 @@ use App\Connection;
 
     public function save() {
 
-		$query = "insert into users(name, surname, email, passwd, username)
-        values(:name, :surname, :email, :passwd, :username)";
+		$query = "insert into users(name, surname, email, passwd, username, userIp)
+        values(:name, :surname, :email, :passwd, :username, :userIp)";
         $stmt = $this->db->prepare($query);
 
 		$stmt->bindValue(':name', $this->__get('name'));
 		$stmt->bindValue(':surname', $this->__get('surname'));
 		$stmt->bindValue(':email', $this->__get('email'));
 		$stmt->bindValue(':passwd', md5($this->__get('passwd')));
-		$stmt->bindValue(':username', $this->__get('username'));
+        $stmt->bindValue(':username', $this->__get('username'));
+        $stmt->bindValue(':userIp', $this->__get('userIp'));
 		// $stmt->bindValue(':cpf', $this->__get('cpf'));
         // $stmt->bindValue(':avatar', $this->__get('avatar'));
         $stmt->execute();
@@ -57,7 +58,7 @@ use App\Connection;
     }
     
     public function validUser() {
-        if(isset($this->name) && $this->surname != '' && $this->username != '') {
+        if(isset($this->name) && $this->surname != '' && $this->username != '' &&  strlen($this->passwd) >= 6 && strlen($this->username) >= 6) {
             return true;
         }
     }

@@ -79,6 +79,7 @@ class IndexController extends Connection {
 		$user->__set('email', $_POST['email']);
         $user->__set('passwd', md5($_POST['passwd']));
         $user->__set('username', $_POST['username']);
+        $user->__set('userIp', $_POST['userIp']);
 		
 		if($user->validUser() && count($user->getUserByEmail()) == 0) {
 		
