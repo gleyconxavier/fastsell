@@ -26,21 +26,25 @@
                         <p><span class="itemDescription">Descrição do item:</span> <?=$post['description']?></p>
                         <p class="itemPrice">R$<?=$post['value']?>,00</p>
                         <span class="date"><?= $post['postDate'] ?></span>
-                        <form id="multForm" method="post">
-                            <input type="hidden" name="postId" value=<?= $post['id'] ?>>
-                            <input type="button" onclick="submitForm('deletePost')" value="Excluir" />
-                            <input type="button" onclick="submitForm('editPost')" value="Editar" />
-                        </form>
-						<br />
+                        <div class="itemButtons">
+                            <form onsubmit="return submitForm(this);" action="deletePost"method="post">
+                                <input type="hidden" name="postId" value="<?= $post['id'] ?>">
+                                <button class="btnWarning" type="submit">Excluir</button>
+                            </form>
+                            <form action="editPost" method="post">
+                                <input type="hidden" name="postId" value="<?= $post['id'] ?>">
+                                <button type="submit">Editar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 <?php } ?>
 </section>
 
-<script type="text/javascript">
-    function submitForm(action) {
-        var form = document.getElementById('multForm');
-        form.action = action;
-        form.submit();
-    }
+<script>
+
+function submitForm() {
+  return confirm('Você realmente deseja excluir?');
+}
+
 </script>

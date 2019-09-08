@@ -43,20 +43,8 @@ class AppController extends Connection {
 
         $itemMod = $this->getModel('Item');
 
-        if(isset($_FILES['itemImages']) && $_FILES['itemImages'] != '') {
+        if(isset($_FILES['itemImages'])) {
            $images = $_FILES['itemImages'];
-        } else {
-
-            print_r($_POST);
-
-            $itemMod->__set('name', $_POST['name']);
-            $itemMod->__set('description', $_POST['description']);
-            $itemMod->__set('value', $_POST['value']);
-            $itemMod->__set('anouncePath', $_POST['anouncePath']);
-            $itemMod->__set('contact', $_POST['contact']);
-
-            $itemMod->itemEdit($_POST['postId'], $_SESSION['id']);
-
         }
 
         $postFolder = 'post' . time() * rand();
@@ -107,12 +95,20 @@ class AppController extends Connection {
                     $itemMod->__set('contact', $_POST['contact']);
 
                     $itemMod->itemEdit($_POST['postId'], $_SESSION['id']);
+                    header('Location: /my-itens');
                 }
             }
 
-        } 
+        }
 
-        // header('Location: /my-itens');
+        $itemMod->__set('name', $_POST['name']);
+        $itemMod->__set('description', $_POST['description']);
+        $itemMod->__set('value', $_POST['value']);
+        $itemMod->__set('anouncePath', $_POST['anouncePath']);
+        $itemMod->__set('contact', $_POST['contact']);
+
+        $itemMod->itemEdit($_POST['postId'], $_SESSION['id']);
+        header('Location: /my-itens');
 
     }
 
