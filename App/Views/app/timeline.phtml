@@ -4,7 +4,7 @@
 <hr>
 </div>
 <form id="searchArea" action="/search" method="post">
-    <input type="text" name="search" id="" placeholder="Pesquisar" required>
+    <input type="text" name="search" placeholder="Pesquisar" required>
     <button type="submit">Pesquisar</button>
 </form>
 <div class="btnTimeline">
@@ -38,6 +38,7 @@
 					<div class="itemInfo">
                         <h1><span class="itemName">Anunciante: </span><?= ucwords($post['username']) ?></h1>
                         <h2><span class="itemName">Nome: </span> <?= ucwords($post['name']) ?></h2>
+                        <h2><span class="itemName">Contato: </span> <?= ucfirst($post['contact']) ?></h2>
                         <p><span class="itemName itemDescription">Descrição do item: </span> <?= ucfirst($post['description']) ?></p>
                         <p class="itemPrice">R$ <?= number_format($post['value'], 2, ',', '.') ?></p>
                         <span class="date"><?= $post['postDate'] ?></span>

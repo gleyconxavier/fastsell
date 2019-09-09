@@ -3,11 +3,11 @@
         <form id="formRegUser" action="/register-user" method="POST">
             <fieldset class="usrRegisterForms" id="userRegister">
                 <h1>Cadastro</h1>
-                <input type="text" value=""name="name" placeholder="Nome" required>
-                <input type="text" value="" name="surname" placeholder="Sobrenome completo" required>
-                <input type="email" value="" name="email" placeholder="Email" required>
-                <input type="text" value="" name="username" placeholder="Nome de usuário" required>
-                <input type="password" value="" name="passwd" placeholder="Senha" required>
+                <input type="text" value=""name="name" placeholder="Nome" required><br>
+                <input type="text" value="" name="surname" placeholder="Sobrenome completo" required><br>
+                <input type="email" value="" name="email" placeholder="Email" required><br>
+                <input type="text" value="" name="username" placeholder="Nome de usuário" required><br>
+                <input type="password" value="" name="passwd" placeholder="Senha" required><br>
                 <input type="hidden" value="<?= $_SERVER['REMOTE_ADDR'] ?>" name="userIp">
             </fieldset>
             <fieldset class="usrRegisterForms">

@@ -23,7 +23,7 @@
 
 					<div class="itemInfo">
                         <h2><span class="itemName">Nome:</span> <?=$post['name']?></h2>
-                        <p><span class="itemDescription">Descrição do item:</span> <?=$post['description']?></p>
+                        <p><span class="itemName itemDescription">Descrição do item: </span> <?= ucfirst($post['description']) ?></p>
                         <p class="itemPrice">R$<?=$post['value']?>,00</p>
                         <span class="date"><?= $post['postDate'] ?></span>
                         <div class="itemButtons">

@@ -192,14 +192,11 @@ input {
     border-radius: 12px;
     padding: 4px;
     margin: 20px;
-    height: auto;
-    width: auto;
-}
-
-.itemArea {
     margin-top: 50px;
     padding-top: 10px;
     color: #00adb5;
+    height: auto;
+    width: auto;
 }
 
 .itemName {
@@ -344,36 +341,41 @@ input {
 
 #editForm {
     text-align: center;
+    max-width: 100%;
 }
 
-#inputImages {
-    font-size: 12px;
+.images {
+    font-size: 9px;
     margin-bottom: 10px;
 }
 
-#aboutUs {
-    margin: 0 20px;
+.infoArea {
+    margin: 50px 40px;
+}
+
+.infoArea h1 {
+    margin-bottom: 30px;
 }
 
 /* responsiveness */
 
-@media only screen and (max-width: 240px) {
+@media only screen and (min-width: 240px) {
+
+    button {
+        padding: 5px;
+    }
+
     nav {
-        height: 10px;
-        top: 10px;
+        height: auto;
+        top: 20%;
     }
 
     p {
         font-size: 12px;
     }
 
-    nav ul {
-        height: 200px;
-        width: 80px;
-    }
-
     nav li {
-        font-size: 12px;
+        font-size: 1rem;
         padding: 8px 0;
     }
 
@@ -382,9 +384,16 @@ input {
         font-size: 9px;
     }
 
+    .itemArea {
+        text-align: center;
+    }
+
     .portrait {
-        width: 80px;
-        margin: 1px;
+        width: 30vw;
+        height: 30vw;
+        margin: 5px auto;
+        border: 1px solid #ccc;
+        border-radius: 5px;
     }
 
     .show {
@@ -401,21 +410,22 @@ input {
     }
 
     .itemPrice {
-        font-size: 18px;
+        font-size: 2em;
+        margin: 5px auto;
     }
 
     .date {
-        font-size: 9px;
+        font-size: 0.8em;
     }
 
     .itemName {
-        font-size: 13px;
+        font-size: 1em;
     }
 
     #responsive-menu {
-        padding: 2px;
-        left: 0px;
-        font-size: 18px;
+        padding: 5px;
+        left: 5px;
+        font-size: 1em;
     }
 
     #usrRegisterForms {
@@ -459,4 +469,81 @@ input {
         width: 100%;
     }
 
+    @media only screen and (min-width: 320px) {
+
+        nav {
+            top: 45%;
+        }
+
+        nav ul {
+            width: 40%;
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+
+        #responsive-menu {
+            display: None;
+        }
+
+        #searchArea button {
+            margin: 0 4px;
+            vertical-align: middle;
+            padding: 10px;
+        }
+
+        p {
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 2vw;
+        }
+
+        nav {
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 60px;
+        }
+
+        nav ul {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            text-align: center;
+            list-style-type: none;
+            margin: 0 auto;
+            padding: 0;
+            overflow: hidden;
+            background-color: #393e46;
+            box-shadow: 1px 1px 3px;
+        }
+
+        nav ul li {
+            float: left;
+            margin-left: 6vw;
+        }
+
+        nav ul li a {
+            display: block;
+            color: #eee;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: color .3s;
+        }
+
+        nav ul li a:hover {
+            color: #00adb5;
+        }
+
+        footer {
+            font-size: 1em;
+        }
+
+        .itemName {
+            font-size: 1.5em;
+        }
+    }
 }
