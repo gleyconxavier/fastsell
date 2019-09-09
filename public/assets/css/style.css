@@ -170,7 +170,7 @@ input {
     width: 280px;
     height: 50px;
     padding: 5px;
-    margin: 0 auto;
+    margin: 0px auto;
     background-color: rgb(111, 221, 221);
     border: 1px solid #111;
     border-radius: 5px;
@@ -544,6 +544,17 @@ input {
 
         .itemName {
             font-size: 1.5em;
+        }
+
+        .images {
+            width: 100%;
+            font-size: 1em;
+        }
+
+        .tips {
+            padding: 20px;
+            padding-bottom: 50px;
+            margin-bottom: 30px;
         }
     }
 }
