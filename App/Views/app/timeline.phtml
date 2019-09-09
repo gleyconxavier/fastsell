@@ -17,6 +17,7 @@
 <section class='showOff'>
 <?php foreach($this->view->userItens as $post) { ?>
 				<div class="itemArea">
+                <div class="imgContainer"> 
                 <?php
 
                 $dirname = $post['anouncePath'];
@@ -25,14 +26,14 @@
 
                 foreach ($filenames as $filename)
                 {
-                    ?>
-                    
-                    <div class="portrait" onclick="openModal(this)">
-                        <img class="itemImage" src="<?php 
-                        $filename = str_replace('../public', '', $filename);            
-                        echo $filename ?>" />
-                    </div>
+                    ?>  
+                        <div class="portrait" onclick="openModal(this)">
+                            <img class="itemImage" src="<?php 
+                            $filename = str_replace('../public', '', $filename);            
+                            echo $filename ?>" />
+                        </div>
                 <?php }?>
+                </div>
 
 					<div class="itemInfo">
                         <h1><span class="itemName">Anunciante: </span><?= ucwords($post['username']) ?></h1>
