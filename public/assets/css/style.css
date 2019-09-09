@@ -42,7 +42,7 @@ ul {
 }
 
 nav {
-    position: absolute;
+    position: fixed;
     height: 250px;
     width: 100%;
     bottom: 115px;
@@ -212,6 +212,10 @@ input {
     max-height:100%;
 }
 
+.logo {
+    width: 100%;
+}
+
 .itemInfo form {
     padding: 10px;
     text-align: center;
@@ -349,4 +353,110 @@ input {
 
 #aboutUs {
     margin: 0 20px;
+}
+
+/* responsiveness */
+
+@media only screen and (max-width: 240px) {
+    nav {
+        height: 10px;
+        top: 10px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    nav ul {
+        height: 200px;
+        width: 80px;
+    }
+
+    nav li {
+        font-size: 12px;
+        padding: 8px 0;
+    }
+
+    
+    footer {
+        font-size: 9px;
+    }
+
+    .portrait {
+        width: 80px;
+        margin: 1px;
+    }
+
+    .show {
+        top: 10%;
+        margin: 0 auto;
+        scale: 6;
+        position: fixed;
+        width: 90%;
+        height: auto;
+        margin: 0 auto;
+        border: 2px solid #f8a978;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .itemPrice {
+        font-size: 18px;
+    }
+
+    .date {
+        font-size: 9px;
+    }
+
+    .itemName {
+        font-size: 13px;
+    }
+
+    #responsive-menu {
+        padding: 2px;
+        left: 0px;
+        font-size: 18px;
+    }
+
+    #usrRegisterForms {
+        width: 100%;
+        text-align: center;
+    }
+    
+    #formRegisterItem {
+        width: 100%;
+        text-align: center;
+    }
+
+    #formRegisterItem input {
+
+        margin: 5px auto;
+        padding: 4px;
+        width: 160px;
+        font-size: 9px;
+    }
+
+    #formRegisterItem button {
+        margin-top: 20px;
+    }
+
+    .tips {
+        width: 100px;
+    }
+
+    #formRegUser {
+        width: 100%;
+    }
+
+    #userRegister input {
+        font-size: 16px;
+        margin-top: 5px;
+        padding: 0;
+    }
+
+    #formLogin {
+        font-size: 12px;
+        width: 100%;
+    }
+
 }

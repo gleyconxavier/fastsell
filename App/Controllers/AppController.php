@@ -288,8 +288,9 @@ class AppController extends Connection {
                     header('Location: /register-item?status=success');
                 }
               
-              }
             }
+            
+        }
 
         $this->view->title = 'Novo anúncio';
         $this->render('register-item');
