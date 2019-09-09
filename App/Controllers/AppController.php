@@ -204,6 +204,18 @@ class AppController extends Connection {
     public function authValid() {
 
         session_start();
+
+        $time = $_SERVER['REQUEST_TIME'];
+        $timeout_duration = 1800;
+
+        if (isset($_SESSION['LAST_ACTIVITY']) && 
+        ($time - $_SESSION['LAST_ACTIVITY']) > $timeout_duration) {
+            session_unset();
+            session_destroy();
+            session_start();
+        }
+
+        $_SESSION['LAST_ACTIVITY'] = $time;
         
 		if(!isset($_SESSION['id']) || $_SESSION['id'] == '' || !isset($_SESSION['name']) || $_SESSION['name'] == '') {
 			header('Location: /');
