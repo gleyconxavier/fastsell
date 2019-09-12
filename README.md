@@ -1,2 +1,2 @@
 # fastsell
-A  classifieds App for Rondonia
+A mvc project for studies.
